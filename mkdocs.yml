@@ -1,0 +1,51 @@
+site_name: Grid++ 文件
+site_description: 給程式初學者的網格遊戲引擎
+docs_dir: docs
+
+theme:
+  name: material
+  language: zh-TW
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: indigo
+      toggle:
+        icon: material/weather-night
+        name: 切換深色模式
+    - scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 切換淺色模式
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.inlinehilite
+
+nav:
+  - 首頁: index.md
+  - 開始使用: getting-started.md
+  - 指南:
+      - 網格與引擎: guide/grid-and-engine.md
+      - 遊戲物件 (OOP): guide/game-objects.md
+      - 素材包: guide/assets.md
+      - 迷宮: guide/maze.md
+      - UI 覆蓋層: guide/ui.md
+  - 教學:
+      - Pac-Man 拆解: tutorial/pacman.md
+  - API 速查: reference/api.md
+  - 引擎內部原理: internals/sqlite-reader.md

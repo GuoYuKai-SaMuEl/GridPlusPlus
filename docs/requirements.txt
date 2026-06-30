@@ -1,0 +1,5 @@
+# 建置文件站所需的 Python 套件
+#   pip install -r docs/requirements.txt
+#   mkdocs serve      # 本機預覽 http://127.0.0.1:8000
+#   mkdocs build      # 產生靜態網站到 site/
+mkdocs-material

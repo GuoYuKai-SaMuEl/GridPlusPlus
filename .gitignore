@@ -1,0 +1,40 @@
+# === 編譯產物 ===
+*.exe
+*.o
+*.obj
+examples/**/game
+# 根目錄範例／模板編譯出的執行檔（Linux/macOS 無副檔名；Windows 的 .exe 已被上面擋掉）
+/game
+
+# === 產生／暫時性、不進版控的檔案 ===
+# 素材包（含 examples/ 底下的），由素材工具另外產生
+assets.db
+# 暫時的預覽圖（docs/images/preview.png 仍會版控）
+/preview.png
+
+# === raylib 動態庫在執行資料夾的複本 ===
+examples/**/raylib.dll
+
+# === MkDocs 文檔站建置輸出 ===
+/site/
+
+# === Python（皆為暫時性腳本，不進版控）===
+*.py
+__pycache__/
+*.pyc
+
+# === 第三方：raylib（建議學生自行安裝，見 docs/getting-started.md）===
+# 若你想把 raylib 一起打包進 repo 讓學生「解壓即用」，把下面這幾行刪掉即可。
+/raylib.h
+/raymath.h
+/rlgl.h
+/lib/
+
+# === 編輯器 / 工具 / 作業系統 ===
+.vscode/
+.idea/
+# Claude Code 本機設定（含 settings.local.json）
+.claude/
+*.swp
+.DS_Store
+Thumbs.db
