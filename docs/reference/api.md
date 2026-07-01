@@ -62,6 +62,8 @@ int   getDirection() const;          // 朝向 0~3
 void  setDirection(int dir);         // 0~3，逆時針每 +1 轉 90°
 Color getTint() const;
 void  setTint(Color c);              // 調色，預設 WHITE
+
+GridEngine* getEngine() const;       // 取得所屬引擎（spawn 後才有效）
 ```
 
 | 成員 | 說明 |
@@ -75,6 +77,29 @@ void  setTint(Color c);              // 調色，預設 WHITE
 | `getTag/setTag` | 身分標記，碰撞時分辨對象。 |
 | `getDirection/setDirection` | 朝向 0~3，繪製時旋轉素材（重複利用同一張圖）。 |
 | `getTint/setTint` | 調色，把素材染成不同顏色（diffuse color）。 |
+| `getEngine()` | 取得所屬引擎（`spawn` 後才有效），例如查地圖大小做邊界檢查。 |
+
+## EasyObject
+
+入門版物件。定義於選用模組 `GridEasy.h`（繼承 `GridObject`）。用「傳進來的函式」決定行為，
+不必先學繼承與覆寫。概念與限制見 [入門版物件 (EasyObject)](../guide/easy-object.md)。
+
+```cpp
+using UpdateFn  = void(*)(GridObject* self);                 // 每幀要跑的函式
+using CollideFn = void(*)(GridObject* self, GridObject* other); // 同格碰撞時要跑的函式
+
+EasyObject(std::string asset, int x, int y,
+           UpdateFn update, CollideFn collide = nullptr);
+```
+
+| 成員 | 說明 |
+|---|---|
+| `EasyObject(asset, x, y, update, collide)` | 建立物件；`update` 每幀呼叫，`collide` 選填（同格碰撞時呼叫）。 |
+| 其餘 | 與 `GridObject` 相同（`getX/move/setTag/setTint/getEngine`…）。 |
+
+!!! note "限制"
+    普通函式沒有「每個物件自己的狀態」。只適合**同種角色只有一個**或**不需記狀態**的情況；
+    需要多個各自記狀態的角色時，請改成繼承 `GridObject`。
 
 ## GridMaze
 

@@ -228,6 +228,7 @@ public:
     virtual void render(GridEngine* engine);
 
     void setEngine(GridEngine* e) { engine = e; }       // 由引擎在 spawn() 時設定
+    GridEngine* getEngine() const { return engine; }    // 取得所屬引擎（例如查地圖大小做邊界檢查）
 
 protected:
     int gridX, gridY;

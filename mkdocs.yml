@@ -41,6 +41,7 @@ nav:
   - 開始使用: getting-started.md
   - 指南:
       - 網格與引擎: guide/grid-and-engine.md
+      - 入門版物件 (EasyObject): guide/easy-object.md
       - 遊戲物件 (OOP): guide/game-objects.md
       - 素材包: guide/assets.md
       - 迷宮: guide/maze.md
