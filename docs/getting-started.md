@@ -5,90 +5,103 @@ Grid++ 只依賴 [raylib](https://www.raylib.com/)（負責開視窗與畫圖）
 
 ## 1. 安裝 raylib
 
-=== "Windows"
+本專案使用 [raylib](https://www.raylib.com/) 作為圖形函式庫。  
+請依照自己的作業系統選擇對應的安裝方式。
 
-    **方法 A：MSYS2 / MinGW（建議）**——裝好 [MSYS2](https://www.msys2.org/) 後，
-    開「MSYS2 MinGW 64-bit」終端機：
+### Linux / WSL
 
-    ```bash
-    pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-raylib
-    ```
+以 Debian / Ubuntu 為例，可以使用套件管理器安裝：
 
-    **方法 B：把 raylib 放進專案**——本 repo 已附 `raylib.h` 與 `lib/`
-    （`libraylib.a` 靜態庫、`libraylibdll.a` + `raylib.dll` 動態庫），編譯時用
-    `-I.`（找標頭）與 `-Llib`（找函式庫）指出位置即可，免另外安裝。
+```bash
+sudo apt install build-essential libraylib-dev
+```
 
-=== "Linux"
+如果系統找不到 `libraylib-dev` 套件，可以改為依照 [raylib 官方 GNU/Linux 編譯說明](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux) 從原始碼編譯安裝。
 
-    用套件管理器安裝（Debian / Ubuntu 為例）：
+### Windows
 
-    ```bash
-    sudo apt install build-essential libraylib-dev   # 或從原始碼編譯 raylib
-    ```
+建議使用 WSL，若無法使用，則建議使用 **MSYS2 / MinGW** 安裝 raylib。
 
-    找不到 `libraylib-dev` 套件時，依
-    [raylib 官方說明](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux)
-    從原始碼編譯安裝即可。
+1. 先安裝 [MSYS2](https://www.msys2.org/)
+2. 開啟 **MSYS2 MinGW 64-bit** 終端機
+3. 執行以下指令：
 
-=== "macOS"
+```bash
+pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-raylib
+```
 
-    用 [Homebrew](https://brew.sh/) 安裝：
+安裝完成後，即可使用 MinGW 的 `gcc` 編譯 raylib 程式。
 
-    ```bash
-    brew install raylib
-    ```
+如果不想透過 MSYS2 安裝，也可以將 raylib 直接放進專案目錄中。  
+專案中需要包含：
+
+```text
+raylib.h
+lib/
+    libraylib.a
+    libraylibdll.a
+    raylib.dll
+```
+
+編譯時再透過 `-I` 指定標頭檔位置，並透過 `-L` 指定函式庫位置即可。
+
+### macOS
+
+macOS 建議使用 [Homebrew](https://brew.sh/) 安裝：
+
+```bash
+brew install raylib
+```
+
+安裝完成後，即可使用系統上的 C/C++ 編譯器連結 raylib。
 
 ## 2. 跑跑看內附的 Pac-Man 範例
 
 範例放在 `examples/pacman/`。先進到該資料夾，確認裡面有 `map.txt` 與 `assets.db` 素材包，
-再依平台編譯（`-I../..` 是用來讓編譯器找到專案根目錄的 `GridMaze.h` / `GridPlusPlus.h`）：
+再依平台編譯。`-I../..` 是用來讓編譯器找到專案根目錄的 `GridMaze.h` / `GridPlusPlus.h`：
 
 ```bash
 cd examples/pacman
 ```
 
-=== "Windows"
+### Windows
 
-    raylib 已裝進工具鏈（MSYS2 / MinGW）時，要連結幾個 Windows 系統函式庫：
+raylib 已裝進工具鏈（MSYS2 / MinGW）時，要連結幾個 Windows 系統函式庫：
 
-    ```bash
-    g++ main.cpp -I../.. -o game -lraylib -lopengl32 -lgdi32 -lwinmm
-    ./game
-    ```
+```bash
+g++ main.cpp -I../.. -o game -lraylib -lopengl32 -lgdi32 -lwinmm
+./game
+```
 
-    若改用 repo 內附的 raylib 動態庫（`lib/`），加上 `-L` 並把 `raylib.dll`
-    複製到 `game.exe` 同一資料夾：
+若改用 repo 內附的 raylib 動態庫（`lib/`），加上 `-L` 並把 `raylib.dll`
+複製到 `game.exe` 同一資料夾：
 
-    ```bash
-    g++ main.cpp -I../.. -L../../lib -lraylibdll -lopengl32 -lgdi32 -lwinmm -o game
-    cp ../../lib/raylib.dll .      # 動態庫：dll 要和 game.exe 同資料夾
-    ./game
-    ```
+```bash
+g++ main.cpp -I../.. -L../../lib -lraylibdll -lopengl32 -lgdi32 -lwinmm -o game
+cp ../../lib/raylib.dll .      # 動態庫：dll 要和 game.exe 同資料夾
+./game
+```
 
-=== "Linux"
+### Linux
 
-    系統函式庫換成 OpenGL / X11 / pthread / 數學庫：
+系統函式庫換成 OpenGL / X11 / pthread / 數學庫：
 
-    ```bash
-    g++ main.cpp -I../.. -o game -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
-    ./game
-    ```
+```bash
+g++ main.cpp -I../.. -o game -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+./game
+```
 
-    Wayland 環境若連結出錯，可改加 raylib 官方文件列出的 Wayland 函式庫。
+Wayland 環境若連結出錯，可改加 raylib 官方文件列出的 Wayland 函式庫。
 
-=== "macOS"
+### macOS
 
-    用 Clang，並以 `-framework` 連結 macOS 系統框架：
+```bash
+g++ main.cpp -I../.. -o game -I$(brew --prefix raylib)/include -L$(brew --prefix raylib)/lib -lraylib
+./game
+```
 
-    ```bash
-    clang++ main.cpp -I../.. -o game -lraylib \
-        -framework OpenGL -framework Cocoa -framework IOKit \
-        -framework CoreVideo -framework CoreAudio
-    ./game
-    ```
-
-    若 `brew` 把 raylib 裝在非預設路徑，加上
-    `-I$(brew --prefix raylib)/include -L$(brew --prefix raylib)/lib`。
+若 `brew` 把 raylib 裝在非預設路徑，加上
+`-I$(brew --prefix raylib)/include -L$(brew --prefix raylib)/lib`。
 
 操作：方向鍵移動，吃光所有豆子獲勝，被鬼魂抓到失敗。逐步拆解見 [Pac-Man 拆解](tutorial/pacman.md)，
 範例資料夾本身也附有 `examples/pacman/README.md`（編譯指令與程式邏輯總覽）。
