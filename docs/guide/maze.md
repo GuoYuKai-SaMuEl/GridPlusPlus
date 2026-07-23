@@ -67,8 +67,7 @@ maze->setWallTiles("wall_iso", "wall_end", "wall_straight",
                    "wall_corner", "wall_tee", "wall_cross");
 ```
 
-本專案的 `create_assets.py` 會產生這 6 張基本形狀（用「某邊有相連的牆就填滿到邊緣、
-沒相連就把外角畫圓」的規則）。
+範例素材包 `examples/pacman/pacman.db` 已收錄這 6 張基本形狀。
 
 !!! tip "切換回簡單版"
     改用一行 `maze->setWallAsset("wall");` 就回到「所有牆同一張圖」（不旋轉、不分形狀）。

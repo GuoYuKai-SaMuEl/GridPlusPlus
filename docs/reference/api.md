@@ -1,7 +1,7 @@
 # API 速查
 
-涵蓋學生會用到的公開介面。內部命名空間 `gridpp_detail`（SQLite 讀取器）不在此列，
-詳見 [引擎內部原理](../internals/sqlite-reader.md)。
+涵蓋學生會用到的公開介面。`GridSQLite.h` 中的內部命名空間 `gridpp_detail`
+不在此列，詳見 [迷你 SQLite 讀取器](../internals/sqlite-reader.md)。
 
 ## GridEngine
 

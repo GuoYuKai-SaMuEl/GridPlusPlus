@@ -62,7 +62,8 @@ int main() {
 
 | 路徑 | 說明 |
 |---|---|
-| `GridPlusPlus.h` | 引擎核心（視窗、主循環、物件、碰撞、素材讀取器）。 |
+| `GridPlusPlus.h` | 引擎核心（視窗、主循環、物件、碰撞、素材載入）。 |
+| `GridSQLite.h` | 核心內部使用的唯讀迷你 SQLite 讀取器。 |
 | `GridMaze.h` | 選用的迷宮模組（讀地圖、牆壁自動拼接、碰撞查詢）。 |
 | `GridUI.h` | 選用的 UI 元件（`Label` / `Button`）。 |
 | `template.cpp` | 起手式模板：一個角色在邊界內移動，複製它開始寫自己的遊戲。 |

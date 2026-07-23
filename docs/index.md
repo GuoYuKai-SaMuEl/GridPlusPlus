@@ -40,4 +40,4 @@ int main() {
 - 還沒跑過？先看 [開始使用](getting-started.md)。
 - 想了解核心概念？看 [網格與引擎](guide/grid-and-engine.md) 與 [遊戲物件](guide/game-objects.md)。
 - 想做一個完整遊戲？看 [Pac-Man 拆解](tutorial/pacman.md)。
-- 好奇引擎內部怎麼運作？看 [引擎內部原理](internals/sqlite-reader.md)。
+- 好奇素材包怎麼被讀出來？看 [迷你 SQLite 讀取器](internals/sqlite-reader.md)。

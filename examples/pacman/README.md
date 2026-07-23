@@ -13,11 +13,11 @@
 |---|---|
 | `main.cpp` | 範例原始碼（完整可編譯版本）。 |
 | `map.txt` | 關卡地圖（純整數，見下方格式）。 |
-| `assets.db` | 素材包（pacman / ghost / pellet / wall … 等圖檔的打包）。 |
+| `pacman.db` | 素材包（pacman / ghost / pellet / wall … 等圖檔的打包）。 |
 | `raylib.dll` | 在 Windows 用動態庫時，需與執行檔同資料夾的 raylib 動態庫。 |
 
 `game(.exe)` 與（Windows 動態庫時的）`raylib.dll` 是編譯/執行時產生的檔案，列在 `.gitignore`
-不進版控；`assets.db` 素材包則另外提供，執行前需放在本資料夾內。
+不進版控；`pacman.db` 素材包則隨範例提供，執行前需放在本資料夾內。
 
 ## 編譯與執行
 
@@ -60,7 +60,7 @@ raylib 的安裝方式見 [開始使用](../../docs/getting-started.md)。`-I../
     ```
 
 !!! note "執行前確認"
-    程式以相對路徑讀取 `map.txt` 與 `assets.db`，所以要在 `examples/pacman/` 資料夾內執行。
+    程式以相對路徑讀取 `map.txt` 與 `pacman.db`，所以要在 `examples/pacman/` 資料夾內執行。
 
 ## 地圖檔 map.txt
 
